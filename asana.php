@@ -344,8 +344,12 @@ class Asana {
      *
      * @return string JSON or null
      */
-    public function getProjectTasks($projectId){
-        return $this->askAsana($this->taskUrl."?project={$projectId}");
+    public function getProjectTasks($projectId, $options) {
+        $params = '';
+        foreach ($options as $key => $value) {
+            $params .= '&' . $key . '=' . $value;
+        }
+        return $this->askAsana($this->taskUrl."?project={$projectId}{$params}");
     }
 
     /**
